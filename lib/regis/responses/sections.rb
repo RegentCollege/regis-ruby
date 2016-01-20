@@ -3,7 +3,7 @@ require 'regis/responses/models/section'
 
 module Regis
     module Response
-        class SectionSearch < Base
+        class Sections < Base
             attr_reader :sections
             
             def initialize(json)

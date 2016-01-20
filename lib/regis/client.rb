@@ -1,13 +1,14 @@
 require 'faraday'
 require 'faraday_middleware'
+require 'faraday-cookie_jar'
 
 require 'regis/configuration'
 require 'regis/endpoint/section'
-require 'regis/endpoint/section_search'
+require 'regis/endpoint/sections'
 
 module Regis
     class Client
-        REQUEST_CLASSES = [ Regis::Endpoint::Section, Regis::Endpoint::SectionSearch ]
+        REQUEST_CLASSES = [ Regis::Endpoint::Section, Regis::Endpoint::Sections ]
         
         attr_reader :configuration
         
@@ -28,8 +29,14 @@ module Regis
         def connection
             return @connection if instance_variable_defined?(:@connection)
             @connection = Faraday.new(@configuration.url, :ssl => {:verify => false}) do |faraday|
-                #faraday.response :logger
                 faraday.basic_auth(@configuration.username, @configuration.password)
+                faraday.request :json
+                
+                faraday.response :json, :content_type => /\bjson$/
+                
+                faraday.use :cookie_jar #preserve the servicestack session
+                #faraday.response :logger
+                
                 faraday.adapter Faraday.default_adapter
             end
         end

@@ -16,11 +16,16 @@ Or install it yourself as:
 
     $ gem install regis
 
-# Configuration
+## Configuration
 
 Set config/regis_api.yml
+
 Set features/config/test_values.yml
 
 ## Usage
 
 See features/step_definitions/api_steps
+
+## Testing
+
+    $ cucumber

@@ -8,13 +8,12 @@ module Regis
                 @client = client
             end
                         
-            def get_section_by_uuid(uuid)
+            def section_get_by_uuid(uuid)
                 response = @client.connection.post do |req|
                     req.url '/json/reply/SectionAdminRequest'
-                    req.headers['Content-Type'] = 'application/json'
-                    req.body = "{\"uuid\": \"#{uuid}\"}"
+                    req.body = JSON.generate({:uuid => uuid})
                 end
-                Response::Section.new(JSON.parse(response.body))
+                Response::Section.new(response.body)
             end
         end
     end

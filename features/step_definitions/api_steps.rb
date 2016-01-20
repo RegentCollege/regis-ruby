@@ -1,5 +1,5 @@
 When /^I search for sections$/ do
-  @response = Regis.client.get_sections_by_reporting_term($REGIS_TEST_VALUES['reporting_term'])
+  @response = Regis.client.sections_get_by_reporting_term($REGIS_TEST_VALUES['reporting_term'])
 end
 
 Then /^I should receive a list of sections$/ do
@@ -7,7 +7,7 @@ Then /^I should receive a list of sections$/ do
 end
 
 When /^I ask for a section$/ do
-  @response = Regis.client.get_section_by_uuid($REGIS_TEST_VALUES['section_uuid'])
+  @response = Regis.client.section_get_by_uuid($REGIS_TEST_VALUES['section_uuid'])
 end
 
 Then /^I should receive the section I asked for$/ do
