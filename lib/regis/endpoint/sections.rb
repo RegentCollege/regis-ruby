@@ -13,7 +13,7 @@ module Regis
                     req.url '/json/reply/SectionsAdminRequest'
                     req.body = JSON.generate({:reporting_term => reporting_term})
                 end
-                Response::SectionSearch.new(response.body)
+                Response::Sections.new(response.body)
             end
         end
     end
