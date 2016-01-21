@@ -24,8 +24,6 @@ Responses are cached with Dalli which requires memcached
 
 Set config/regis_api.yml
 
-Set features/config/test_values.yml
-
 ```
 require 'regis'
 
@@ -48,5 +46,7 @@ See features/step_definitions/api_steps
 All responses are cached based on the request URL. So, all endpoints must include variables in the URL itself.
 
 ## Testing
+
+Set features/config/test_values.yml
 
     $ cucumber
