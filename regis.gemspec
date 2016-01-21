@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'faraday', '~> 0.8', '>= 0.8.0'
   s.add_runtime_dependency 'faraday_middleware', '~> 0.8', '>= 0.8.0'
   s.add_runtime_dependency 'faraday-cookie_jar', '~> 0.0.6', '>= 0.0.6'
-  s.add_runtime_dependency 'dalli', '~> 2.7', '>= 2.7.0'
+  s.add_runtime_dependency 'dalli', '~> 2.1', '>= 2.1.0'
   s.add_development_dependency 'cucumber', '~> 1.3', '>= 1.3.20'
   s.add_development_dependency 'rspec', '~> 3.0', '>= 3.0.0'
   s.date        = '2016-01-15'
