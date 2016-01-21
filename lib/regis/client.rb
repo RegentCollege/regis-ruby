@@ -2,6 +2,9 @@ require 'faraday'
 require 'faraday_middleware'
 require 'faraday-cookie_jar'
 
+require 'dalli'
+
+require 'regis/cache'
 require 'regis/configuration'
 require 'regis/endpoint/section'
 require 'regis/endpoint/sections'
@@ -25,18 +28,21 @@ module Regis
             @configuration = Configuration.new
             yield(@configuration)
         end
-        
+                
         def connection
             return @connection if instance_variable_defined?(:@connection)
             @connection = Faraday.new(@configuration.url, :ssl => {:verify => false}) do |faraday|
                 faraday.basic_auth(@configuration.username, @configuration.password)
                 faraday.request :json
-                
+
                 faraday.response :json, :content_type => /\bjson$/
-                
-                faraday.use :cookie_jar #preserve the servicestack session
                 #faraday.response :logger
                 
+                faraday.response :caching do
+                    @configuration.cache
+                end
+                                
+                faraday.use :cookie_jar #preserve the servicestack session
                 faraday.adapter Faraday.default_adapter
             end
         end

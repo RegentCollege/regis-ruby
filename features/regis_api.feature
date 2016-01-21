@@ -9,3 +9,14 @@ Scenario: search sections
 Scenario: retrieve section
     When I ask for a section
     Then I should receive the section I asked for
+    
+Scenario: section values are populated
+    When I ask for a section
+    Then I should have populated section values
+    
+Scenario: api is cached
+    When I reset the section cache
+    And I ask for a section
+    Then I should receive the section I asked for
+    When I ask for a section
+    Then I should have a cached response

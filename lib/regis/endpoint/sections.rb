@@ -9,10 +9,7 @@ module Regis
             end
                         
             def sections_get_by_reporting_term(reporting_term)
-                response = @client.connection.post do |req|
-                    req.url '/json/reply/SectionsAdminRequest'
-                    req.body = JSON.generate({:reporting_term => reporting_term})
-                end
+                response = @client.connection.get "/Sections/Admin/#{reporting_term}", { :format => 'json' }
                 Response::Sections.new(response.body)
             end
         end
