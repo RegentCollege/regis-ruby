@@ -6,10 +6,8 @@ module Regis
         class Sections < Base
             attr_reader :sections
             
-            def initialize(json)
-                super(json)
-                
-                @sections = parse(@sections, Model::Section)
+            def initialize(json)                
+                @sections = parse(json, Model::Section)
             end
         end
     end

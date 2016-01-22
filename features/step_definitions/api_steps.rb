@@ -7,7 +7,7 @@ Then /^I should receive a list of sections$/ do
 end
 
 When /^I reset the section cache$/ do
-  Regis.client.configuration.cache.delete("/Section/Admin/#{$REGIS_TEST_VALUES['section_uuid']}?format=json")
+  Regis.client.configuration.cache.delete("/Section/#{$REGIS_TEST_VALUES['section_uuid']}?format=json")
 end
 
 When /^I ask for a section$/ do
@@ -15,18 +15,22 @@ When /^I ask for a section$/ do
 end
 
 Then /^I should receive the section I asked for$/ do
-  expect(@response.section.uuid == $REGIS_TEST_VALUES['section_uuid']).to be true
+  expect(@response.section.secUUID == $REGIS_TEST_VALUES['section_uuid']).to be true
 end
 
 Then /^I should have populated section values$/ do
-  expect(@response.section.uuid).not_to be_empty
+  expect(@response.section.secUUID).not_to be_empty
   expect(@response.section.reporting_term).not_to be_empty
   expect(@response.section.course_name).not_to be_empty
-  expect(@response.section.title).not_to be_empty
-  expect(@response.section.min_credits).to be > 0
+  expect(@response.section.course_title).not_to be_empty
+  expect(@response.section.credits_long_name).not_to be_empty
+end
+
+Then /^I should have an instructor$/ do
+  expect(@response.section.instructors[0].regent_id).to be > 0
 end
 
 Then /^I should have a cached response$/ do
-  response = Regis.client.configuration.cache.read("/Section/Admin/#{$REGIS_TEST_VALUES['section_uuid']}?format=json")
+  response = Regis.client.configuration.cache.read("/Section/#{$REGIS_TEST_VALUES['section_uuid']}?format=json")
   expect(response).to be_instance_of(Faraday::Response)
 end

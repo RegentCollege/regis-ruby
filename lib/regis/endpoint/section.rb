@@ -9,7 +9,7 @@ module Regis
             end
                         
             def section_get_by_uuid(uuid)
-                response = @client.connection.get "/Section/Admin/#{uuid}", { :format => 'json' }
+                response = @client.connection.get "/Section/#{uuid}", { :format => 'json' }
                 Response::Section.new(response.body)
             end
         end

@@ -5,7 +5,7 @@ Feature: regis api can connect
 Scenario: search sections
     When I search for sections
     Then I should receive a list of sections
-    
+
 Scenario: retrieve section
     When I ask for a section
     Then I should receive the section I asked for
@@ -13,6 +13,7 @@ Scenario: retrieve section
 Scenario: section values are populated
     When I ask for a section
     Then I should have populated section values
+    Then I should have an instructor
     
 Scenario: api is cached
     When I reset the section cache
