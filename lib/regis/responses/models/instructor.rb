@@ -5,6 +5,7 @@ module Regis
         module Model
             class Instructor < Response::Base
                 attr_reader :regent_id
+                attr_reader :regent_login
                 attr_reader :first_name
                 attr_reader :last_name
                 attr_reader :full_name

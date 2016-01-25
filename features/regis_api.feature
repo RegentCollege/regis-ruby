@@ -21,3 +21,7 @@ Scenario: api is cached
     Then I should receive the section I asked for
     When I ask for a section
     Then I should have a cached response
+    
+Scenario: section has formatted start and end dates
+    When I ask for a section
+    Then I should have formatted start and end dates

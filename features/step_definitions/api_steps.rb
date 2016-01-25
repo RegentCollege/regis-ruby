@@ -18,6 +18,11 @@ Then /^I should receive the section I asked for$/ do
   expect(@response.section.secUUID == $REGIS_TEST_VALUES['section_uuid']).to be true
 end
 
+Then /^I should have formatted start and end dates$/ do
+  expect(@response.section.formatted_start_date).not_to be_empty
+  expect(@response.section.formatted_end_date).not_to be_empty
+end
+
 Then /^I should have populated section values$/ do
   expect(@response.section.secUUID).not_to be_empty
   expect(@response.section.reporting_term).not_to be_empty
