@@ -37,8 +37,8 @@ module Regis
                 
                 attr_reader :reporting_term
                 attr_reader :term
+                attr_reader :audits_long_name
                 attr_reader :credits_long_name
-                attr_reader :max_credits
                 attr_reader :is_pass_fail                
                 
                 attr_reader :instructors
@@ -74,7 +74,7 @@ module Regis
                 end
 
                 def formatted_location
-                    self[:location].present?? Section.formatted_location(self[:location]) : ""
+                    self.location_code.present?? Section.formatted_location(self.location_code) : ""
                 end
                 
                 def formatted_instructors(options = {:linked => true })
